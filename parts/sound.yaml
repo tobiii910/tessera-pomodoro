@@ -1,0 +1,17 @@
+# The beep when a phase ends, on the screen's speaker (ts_speaker, the feature speaker): the app builds this part only on
+# a screen that has one, from its board or another plugin. It hands the speaker to the component of plugin.yaml (ESPHome
+# merges the two), with a switch that turns the beep off, kept on the screen and shown in Home Assistant, on the
+# screen's settings page and in the editor. The Guition 4-inch has no speaker: it builds without this part and shows
+# the end of a phase on the glass alone.
+switch:
+  - platform: template
+    id: pomodoro_sound_on
+    name: "Pomodoro Ton"
+    icon: mdi:volume-high
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+    entity_category: config
+
+pomodoro:
+  speaker: ts_speaker
+  sound_on: pomodoro_sound_on

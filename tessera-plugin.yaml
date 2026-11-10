@@ -1,0 +1,49 @@
+# Pomodoro: a focus timer with short and long breaks, on the screen itself. The ring, the tile layouts, the card, the
+# top bar item, the restart and the clock come from tessera-timers by Heronimonimo (MIT). Every name, label and hint is
+# a key into translations/<language>.json, part "app". docs/MANIFEST.md in tessera-plugins has every field.
+id: pomodoro
+version: 0.1.0
+# 0.18: the popup when a phase ends (tessera::show_popup); the rest is older (0.9 tones, 0.10 tap_point, 0.12 a card's
+# on_tap).
+api: "0.18"
+icon: timer-outline
+maintainer: tobiii910
+license: MIT
+stage: beta
+topics: [time]
+requires:
+  esphome: 2026.6.2
+boards: any
+flash_kb: 24
+
+tiles:
+  # The pomodoro of the screen: one for the whole screen, so every tile of it shows the same. A tap on a key starts,
+  # pauses, skips or resets it; a tap elsewhere opens the card with every key.
+  - id: pomodoro
+    name: tile_name
+    icon: timer-outline
+    sizes: { min: 1x1, max: 3x3 }
+    memory: 2000
+    example: tile_example
+
+cards:
+  - { id: pomodoro, name: card_name, wide: true }
+
+# The top bar, when a person places it there: the phase and its minutes while the pomodoro runs.
+bar_items:
+  - { id: running, label: bar_running, icon: timer-outline, example: bar_running_example }
+
+# A beep when a phase ends, on a screen with a speaker (from its board or another plugin).
+parts:
+  - { id: sound, file: parts/sound.yaml, label: part_sound, hint: part_sound_hint, features: [speaker], flash_kb: 60, default: true }
+
+# The entities of plugin.yaml (their names as ids), also on the screen's settings page and in Home Assistant.
+settings:
+  - { key: pomodoro_fokusdauer, label: setting_focus, hint: setting_focus_hint }
+  - { key: pomodoro_kurze_pause, label: setting_short, hint: setting_short_hint }
+  - { key: pomodoro_lange_pause, label: setting_long, hint: setting_long_hint }
+  - { key: pomodoro_runden_bis_lange_pause, label: setting_rounds, hint: setting_rounds_hint }
+  - { key: pomodoro_autostart, label: setting_autostart, hint: setting_autostart_hint }
+  - { key: pomodoro_bei_phasenende_zeigen, label: setting_opens, hint: setting_opens_hint }
+  # Only on a screen with a speaker (the part sound): elsewhere the editor shows it unavailable.
+  - { key: pomodoro_ton, label: setting_sound, hint: setting_sound_hint }

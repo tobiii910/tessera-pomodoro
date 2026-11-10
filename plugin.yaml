@@ -1,0 +1,99 @@
+# What a screen gets when it takes this plugin: the component, its settings (kept on the screen, shown in Home
+# Assistant, on the screen's settings page and in the editor) and three entities that tell Home Assistant how the
+# pomodoro goes.
+number:
+  - platform: template
+    id: pomodoro_focus
+    name: "Pomodoro Fokusdauer"
+    icon: mdi:timer-outline
+    optimistic: true
+    min_value: 1
+    max_value: 90
+    step: 1
+    initial_value: 25
+    restore_value: true
+    unit_of_measurement: min
+    entity_category: config
+  - platform: template
+    id: pomodoro_short
+    name: "Pomodoro kurze Pause"
+    icon: mdi:coffee-outline
+    optimistic: true
+    min_value: 1
+    max_value: 30
+    step: 1
+    initial_value: 5
+    restore_value: true
+    unit_of_measurement: min
+    entity_category: config
+  - platform: template
+    id: pomodoro_long
+    name: "Pomodoro lange Pause"
+    icon: mdi:sofa-outline
+    optimistic: true
+    min_value: 1
+    max_value: 60
+    step: 1
+    initial_value: 15
+    restore_value: true
+    unit_of_measurement: min
+    entity_category: config
+  - platform: template
+    id: pomodoro_rounds
+    name: "Pomodoro Runden bis lange Pause"
+    icon: mdi:numeric
+    optimistic: true
+    min_value: 2
+    max_value: 8
+    step: 1
+    initial_value: 4
+    restore_value: true
+    entity_category: config
+
+switch:
+  - platform: template
+    id: pomodoro_autostart
+    name: "Pomodoro Autostart"
+    icon: mdi:play-circle-outline
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF
+    entity_category: config
+  - platform: template
+    id: pomodoro_opens
+    name: "Pomodoro bei Phasenende zeigen"
+    icon: mdi:timer-eye-outline
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+    entity_category: config
+
+text_sensor:
+  - platform: template
+    id: pomodoro_phase
+    name: "Pomodoro Phase"
+    icon: mdi:timer-outline
+    update_interval: never
+
+sensor:
+  - platform: template
+    id: pomodoro_round
+    name: "Pomodoro Runde"
+    icon: mdi:counter
+    accuracy_decimals: 0
+    update_interval: never
+
+binary_sensor:
+  - platform: template
+    id: pomodoro_ended
+    name: "Pomodoro Phase beendet"
+    icon: mdi:timer-alert-outline
+
+pomodoro:
+  focus: pomodoro_focus
+  short_break: pomodoro_short
+  long_break: pomodoro_long
+  rounds: pomodoro_rounds
+  autostart: pomodoro_autostart
+  opens_when_done: pomodoro_opens
+  phase: pomodoro_phase
+  round: pomodoro_round
+  ended: pomodoro_ended

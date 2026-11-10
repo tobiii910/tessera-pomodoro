@@ -1,0 +1,8 @@
+# What tools/preview.py shows (docs/PREVIEW.md in tessera-plugins). The pomodoro has no data from the app: the tiles
+# show it as it is on a screen that just started, ready for the first focus round with the default lengths.
+tiles:
+  - tile: pomodoro
+    name: Pomodoro
+
+cards:
+  - { card: pomodoro }
