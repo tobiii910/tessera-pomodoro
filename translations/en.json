@@ -26,7 +26,7 @@
     "focus_length": "Focus",
     "short_length": "Short break",
     "long_length": "Long break",
-    "rounds": "Rounds before the long break",
+    "rounds": "Rounds per cycle",
     "autostart": "Start the next phase by itself",
     "opens_when_done": "Show when a phase ends",
     "sound": "Sound"
